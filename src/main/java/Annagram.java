@@ -6,8 +6,7 @@ public class Annagram {
     public static void main(String[] args) throws IOException {
         List<String> wordList = readFile();
         Map<String,String> anagramGroups = groupAnagrams(wordList);
-        anagramGroups.values().forEach( v-> System.out.println(v));
-        System.out.println(anagramGroups.values().size());
+        anagramGroups.values().stream().filter(f -> f.contains(" ")).forEach(v ->System.out.println(v));
     }
 
 
@@ -21,14 +20,13 @@ public class Annagram {
                 wordList.add(line);
             }
         }
-        System.out.println(wordList.size());
         return wordList;
     }
 
     public static Map<String,String> groupAnagrams(List<String> words) {
         HashMap<String,String> anagramGroups = new HashMap<>();
         for (String word: words) {
-            char[] wordArray = word.toCharArray();
+            char[] wordArray = word.toLowerCase(Locale.ROOT).toCharArray();
             Arrays.sort(wordArray);
             String sortedKey = String.valueOf(wordArray);
             if (anagramGroups.get(sortedKey) == null){
@@ -38,7 +36,6 @@ public class Annagram {
                 String anagramGroup = anagramGroups.get(sortedKey).concat(" " + word);
                 anagramGroups.put(sortedKey,anagramGroup);
             }
-
         }
         return anagramGroups;
     }
