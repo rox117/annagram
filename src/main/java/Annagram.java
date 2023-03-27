@@ -3,10 +3,15 @@ import java.util.*;
 
 public class Annagram {
 
-    public static void main(String[] args) throws IOException {
-        List<String> wordList = readFile();
-        Map<String,String> anagramGroups = groupAnagrams(wordList);
-        anagramGroups.values().stream().filter(f -> f.contains(" ")).forEach(v ->System.out.println(v));
+    public static void main(String[] args){
+        try {
+            List<String> wordList = readFile();
+            Map<String, String> anagramGroups = groupAnagrams(wordList);
+            anagramGroups.values().stream().filter(f -> f.contains(" ")).forEach(v -> System.out.println(v));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
