@@ -31,7 +31,7 @@ public class Annagram {
     public static Map<String,String> groupAnagrams(List<String> words) {
         HashMap<String,String> anagramGroups = new HashMap<>();
         for (String word: words) {
-            char[] wordArray = word.toLowerCase(Locale.ROOT).toCharArray();
+            char[] wordArray = word.toLowerCase().toCharArray();
             Arrays.sort(wordArray);
             String sortedKey = String.valueOf(wordArray);
             if (anagramGroups.get(sortedKey) == null){
